@@ -1,7 +1,9 @@
 package co.com.poli.servicedominioppi.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,12 +22,11 @@ public class Backlog extends EntityBase{
 
   @Column(name = "project_identifier")
   private String projectIdentifier;
-  @JsonBackReference
   @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "project_id")
   private Project project;
-  @OneToMany
-  @JoinColumn(name = "project_task_id")
+  @JsonManagedReference
+  @OneToMany(mappedBy = "project_task", cascade = CascadeType.PERSIST)
   private List<ProjectTask> projectTasks;
 
   @Override

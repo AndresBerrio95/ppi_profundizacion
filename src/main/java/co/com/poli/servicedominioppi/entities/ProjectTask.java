@@ -1,5 +1,6 @@
 package co.com.poli.servicedominioppi.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +34,7 @@ public class ProjectTask {
   private Date endDate;
   @Column(name = "project_identifier")
   private String projectIdentifier;
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "backlog_id")
   private Backlog backlog;
