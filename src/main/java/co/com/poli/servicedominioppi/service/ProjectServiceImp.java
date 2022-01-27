@@ -29,7 +29,7 @@ public class ProjectServiceImp implements ProjectService{
   }
 
   @Override
-  public List<ProjectTask> findByIdeTasks(Long id) {
+  public List<ProjectTask> findByIdTasks(Long id) {
     List<Project> p=findAll();
     for (Project project : p) {
       if (project.getId().equals(id)) {
@@ -42,7 +42,7 @@ public class ProjectServiceImp implements ProjectService{
   @Override
   public double totaldeHoras(Long id) {
     double horas=0;
-    List<ProjectTask> p=findByIdeTasks(id);
+    List<ProjectTask> p= findByIdTasks(id);
     for (int i = 0; i < p.size(); i++) {
       if(!p.get(i).getStatus().equals("DELETED")) {
         horas += p.get(i).getHours();
@@ -55,7 +55,7 @@ public class ProjectServiceImp implements ProjectService{
   @Override
   public double totaldeHorasEstado(Long id, String estado) {
     double horas=0;
-    List<ProjectTask> p=findByIdeTasks(id);
+    List<ProjectTask> p= findByIdTasks(id);
     for (int i = 0; i < p.size(); i++) {
       if(p.get(i).getStatus().toString().equals(estado)) {
         horas += p.get(i).getHours();
@@ -67,7 +67,7 @@ public class ProjectServiceImp implements ProjectService{
   @Override
   public double totaldeHorasSinEstadoDelete(Long id) {
     double horas=0;
-    List<ProjectTask> p=findByIdeTasks(id);
+    List<ProjectTask> p= findByIdTasks(id);
     for (int i = 0; i < p.size(); i++) {
       if (p.get(i).getStatus().toString().contains("DELETE")){
         return horas;
@@ -82,7 +82,7 @@ public class ProjectServiceImp implements ProjectService{
   @Override
   public ProjectTask deleteTask(Long idtask, Long id) {
     ProjectTaskServiceImp projectTaskServiceImp = new ProjectTaskServiceImp();
-    List<ProjectTask> p=findByIdeTasks(id);
+    List<ProjectTask> p= findByIdTasks(id);
     for (int i = 0; i < p.size(); i++) {
       if (p.get(i).getId()==idtask){
         p.get(i).setStatus(Status.DELETED);

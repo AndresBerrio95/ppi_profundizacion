@@ -28,9 +28,9 @@ public class ProjectController {
   }
 
   @GetMapping("/{id}")
-  public List<ProjectTask> findByIdeTasks(@PathVariable("id") Long id){
-    List<ProjectTask> projectTask = projectService.findByIdeTasks(id);
-    return projectService.findByIdeTasks(id);
+  public List<ProjectTask> findByIdTasks(@PathVariable("id") Long id){
+    List<ProjectTask> projectTask = projectService.findByIdTasks(id);
+    return projectService.findByIdTasks(id);
   }
 
   @GetMapping("/hours/{id}")
