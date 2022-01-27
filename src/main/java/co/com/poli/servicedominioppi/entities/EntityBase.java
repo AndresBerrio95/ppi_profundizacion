@@ -19,8 +19,6 @@ public class EntityBase {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  @NotBlank(message = "Id no debe estar en blanco")
-  @NotEmpty(message = "Id no debe estar vacio")
   private Long id;
 
   @Override
