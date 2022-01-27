@@ -12,9 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 @Getter
 @Setter
@@ -38,12 +38,12 @@ public class ProjectTask extends EntityBase{
   private Status status;
 
   @Column(name = "priority")
-  @Size(min = 1, max = 5, message = "Prioridad debe estar entre 1 a 5 caracteres")
-  private Integer priority;
+  @Range(min = 1, max = 5, message = "Prioridad debe estar entre 1 a 5 caracteres")
+  private int priority;
 
   @Column(name = "hours")
-  @Size(min = 1, max = 8, message = "Horas debe estar entre el valor de 1 a 8")
-  @Min(value = 0L, message = "El valor debe de ser positivo")
+  @Min(value = 1, message = "El valor debe ser 1 o más")
+  @Range(min = 1, max = 8, message = "Horas debe estar entre el valor de 1 a 8")
   private Double hours;
 
   @Column(name = "start_date")

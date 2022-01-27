@@ -5,6 +5,7 @@ import co.com.poli.servicedominioppi.entities.ProjectTask;
 import co.com.poli.servicedominioppi.service.ProjectService;
 import java.util.List;
 import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/project")
+@RequiredArgsConstructor
 public class ProjectController {
   @Autowired
   private ProjectService projectService;
@@ -26,22 +28,28 @@ public class ProjectController {
   }
 
   @GetMapping("/{id}")
-  public List<ProjectTask> findByIdeTasks(@PathVariable String id){
+  public List<ProjectTask> findByIdeTasks(@PathVariable("id") Long id){
+    List<ProjectTask> projectTask = projectService.findByIdeTasks(id);
     return projectService.findByIdeTasks(id);
   }
 
   @GetMapping("/hours/{id}")
-  public double totaldeHoras(@PathVariable String id){
+  public double totaldeHoras(@PathVariable("id") Long id){
     return projectService.totaldeHoras(id);
   }
 
   @GetMapping("/hours/{id}/{status}")
-  public double totaldeHorasEstado(@PathVariable String id,@PathVariable String estado){
+  public double totaldeHorasEstado(@PathVariable("id") Long id,@PathVariable("status") String estado){
     return projectService.totaldeHorasEstado(id,estado);
   }
 
+  @GetMapping("/hours/sinesatado/{id}")
+  public double totaldeHorasSinEstadoDelete(@PathVariable("id") Long id){
+    return projectService.totaldeHorasSinEstadoDelete(id);
+  }
+
   @DeleteMapping("/{idtask}/{id}")
-  public ProjectTask deleteTask(@Valid @PathVariable Long idtask,@PathVariable String id){
+  public ProjectTask deleteTask(@Valid @PathVariable("idtask") Long idtask,@PathVariable("id") Long id){
     return projectService.deleteTask(idtask,id);
   }
 

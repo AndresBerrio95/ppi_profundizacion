@@ -29,10 +29,10 @@ public class ProjectServiceImp implements ProjectService{
   }
 
   @Override
-  public List<ProjectTask> findByIdeTasks(String id) {
+  public List<ProjectTask> findByIdeTasks(Long id) {
     List<Project> p=findAll();
     for (Project project : p) {
-      if (project.getProjectIdentifier().equals(id)) {
+      if (project.getId().equals(id)) {
         return project.getBacklog().getProjectTasks();
       }
     }
@@ -40,7 +40,7 @@ public class ProjectServiceImp implements ProjectService{
   }
 
   @Override
-  public double totaldeHoras(String id) {
+  public double totaldeHoras(Long id) {
     double horas=0;
     List<ProjectTask> p=findByIdeTasks(id);
     for (int i = 0; i < p.size(); i++) {
@@ -53,7 +53,7 @@ public class ProjectServiceImp implements ProjectService{
   }
 
   @Override
-  public double totaldeHorasEstado(String id, String estado) {
+  public double totaldeHorasEstado(Long id, String estado) {
     double horas=0;
     List<ProjectTask> p=findByIdeTasks(id);
     for (int i = 0; i < p.size(); i++) {
@@ -65,8 +65,23 @@ public class ProjectServiceImp implements ProjectService{
   }
 
   @Override
-  public ProjectTask deleteTask(Long idtask, String id) {
-    ProjectTaskServiceImp service = new ProjectTaskServiceImp();
+  public double totaldeHorasSinEstadoDelete(Long id) {
+    double horas=0;
+    List<ProjectTask> p=findByIdeTasks(id);
+    for (int i = 0; i < p.size(); i++) {
+      if (p.get(i).getStatus().toString().contains("DELETE")){
+        return horas;
+      }else {
+        System.out.println("Entre por el si");
+        horas += p.get(i).getHours();
+      }
+    }
+    return horas;
+  }
+
+  @Override
+  public ProjectTask deleteTask(Long idtask, Long id) {
+    ProjectTaskServiceImp projectTaskServiceImp = new ProjectTaskServiceImp();
     List<ProjectTask> p=findByIdeTasks(id);
     for (int i = 0; i < p.size(); i++) {
       if (p.get(i).getId()==idtask){

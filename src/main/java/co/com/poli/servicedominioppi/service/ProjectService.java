@@ -8,8 +8,9 @@ public interface ProjectService {
 
   List<Project> findAll();
   Project create(Project project);
-  List<ProjectTask> findByIdeTasks(String id);
-  double totaldeHoras(String id);
-  double totaldeHorasEstado (String id,String estado);
-  ProjectTask deleteTask(Long idtask,String id);
+  List<ProjectTask> findByIdeTasks(Long id);
+  double totaldeHoras(Long id);
+  double totaldeHorasEstado (Long id,String estado);
+  double totaldeHorasSinEstadoDelete (Long id);
+  ProjectTask deleteTask(Long idtask,Long id);
 }

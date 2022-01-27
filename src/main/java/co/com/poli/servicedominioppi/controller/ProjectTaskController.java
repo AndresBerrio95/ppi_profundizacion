@@ -3,6 +3,7 @@ package co.com.poli.servicedominioppi.controller;
 import co.com.poli.servicedominioppi.entities.ProjectTask;
 import co.com.poli.servicedominioppi.service.ProjectTaskService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class ProjectTaskController {
   }
 
   @PostMapping
-  public ProjectTask create(@RequestBody ProjectTask projectTask) {
+  public ProjectTask create(@Valid @RequestBody ProjectTask projectTask) {
     return projectTaskService.create(projectTask);
   }
 }
