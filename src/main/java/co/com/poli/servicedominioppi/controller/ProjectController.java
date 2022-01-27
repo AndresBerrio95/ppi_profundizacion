@@ -45,7 +45,6 @@ public class ProjectController {
     return projectService.deleteTask(idtask,id);
   }
 
-  //PostParafindByIdTasks
   @PostMapping
   public Project create(@Valid @RequestBody Project project){
     return projectService.create(project);
