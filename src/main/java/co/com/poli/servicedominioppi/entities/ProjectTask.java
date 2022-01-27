@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "project_tasks")
+@Table(name = "projectTasks")
 public class ProjectTask extends EntityBase{
 
   @Column(name = "name")
