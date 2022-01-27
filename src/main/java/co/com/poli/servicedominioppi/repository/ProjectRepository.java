@@ -1,5 +1,10 @@
 package co.com.poli.servicedominioppi.repository;
 
-public interface ProjectRepository {
+import co.com.poli.servicedominioppi.entities.Project;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 }

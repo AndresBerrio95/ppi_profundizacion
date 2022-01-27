@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,10 +22,14 @@ import lombok.Setter;
 public class Backlog extends EntityBase{
 
   @Column(name = "project_identifier")
+  @NotBlank(message = "Identificador no debe estar en blanco")
   private String projectIdentifier;
+
+  @JsonBackReference
   @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "project_id")
   private Project project;
+
   @JsonManagedReference
   @OneToMany(mappedBy = "project_task", cascade = CascadeType.PERSIST)
   private List<ProjectTask> projectTasks;
