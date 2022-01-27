@@ -1,7 +1,7 @@
 server:
-  port: 9050
+  port: 9060
   servlet:
-    context-path: /test/v1
+    context-path: /ppi/v1
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
