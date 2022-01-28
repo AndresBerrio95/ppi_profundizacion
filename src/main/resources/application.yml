@@ -1,11 +1,11 @@
 server:
-  port: ${PORT:5000}
+  port: ${PORT:9050}
   servlet:
     context-path: /ppi/v1
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc://postgresql://ec2-18-209-169-66.compute-1.amazonaws.com:5432/d995tu3faqaopq
+    url: jdbc:postgresql://ec2-18-209-169-66.compute-1.amazonaws.com:5432/d995tu3faqaopq
     username: syvfoqxeciopcf
     password: faa061c1e422547e456f1304b767a2ad195c1b13e7cb01acc7ea720bb621faaa
     platform: postgres
